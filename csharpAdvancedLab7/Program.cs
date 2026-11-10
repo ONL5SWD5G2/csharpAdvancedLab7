@@ -148,17 +148,28 @@
 #region part 4
 
 #region 9
-delegate bool textrule(string text);
+//delegate bool textrule(string text);
 
-static bool containsdash(string text) => text.Contains("-");
-static bool startswitha(string text) => text.StartsWith("a");
+//static bool containsdash(string text) => text.Contains("-");
+//static bool startswitha(string text) => text.StartsWith("a");
 
-textrule rules = containsdash;
-rules += startswitha;
+//textrule rules = containsdash;
+//rules += startswitha;
 
-string label = "a-123";
-Console.WriteLine($"contains dash: {containsdash(label)}");
-Console.WriteLine($"starts with a: {startswitha(label)}");
+//string label = "a-123";
+//Console.WriteLine($"contains dash: {containsdash(label)}");
+//Console.WriteLine($"starts with a: {startswitha(label)}");
+#endregion
+
+#region 10
+static Predicate<decimal> creatediscountrule(decimal min)
+{
+    return total => total >= min;
+}
+
+Predicate<decimal> rule = creatediscountrule(200m);
+Console.WriteLine($"qualifies 150: {rule(150m)}");
+Console.WriteLine($"qualifies 250: {rule(250m)}");
 #endregion
 
 #endregion
