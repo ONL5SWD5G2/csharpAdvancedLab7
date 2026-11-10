@@ -132,9 +132,15 @@
 #endregion
 
 #region 7
-Func<string, int> getlength = label => label.Trim().Length;
-Console.WriteLine($"badge length: {getlength("  john  ")}");
-Console.WriteLine($"badge length: {getlength(" anna ")}");
+//Func<string, int> getlength = label => label.Trim().Length;
+//Console.WriteLine($"badge length: {getlength("  john  ")}");
+//Console.WriteLine($"badge length: {getlength(" anna ")}");
+#endregion
+
+#region 8
+Action<string> announce = msg => Console.WriteLine($"announcement: {msg}");
+announce("train departing platform 1");
+announce("train arriving platform 2");
 #endregion
 
 #endregion
