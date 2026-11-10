@@ -42,21 +42,55 @@
 #endregion
 
 #region 3
-static int findindex<t>(t[] array, t value)
+//static int findindex<t>(t[] array, t value)
+//{
+//    for (int i = 0; i < array.Length; i++)
+//    {
+//        if (array[i].Equals(value))
+//        {
+//            return i;
+//        }
+//    }
+//    return -1;
+//}
+
+//string[] codes = { "ex-101", "ex-102", "ex-103" };
+//int idx = findindex(codes, "ex-102");
+//Console.WriteLine($"index: {idx}");
+#endregion
+
+#endregion
+
+#region part 2
+
+#region 4
+class librarybook : IEquatable<librarybook>
 {
-    for (int i = 0; i < array.Length; i++)
+    public string catalogcode { get; set; }
+    public string title { get; set; }
+    public string author { get; set; }
+
+    public librarybook(string catalogcode, string title, string author)
     {
-        if (array[i].Equals(value))
-        {
-            return i;
-        }
+        this.catalogcode = catalogcode;
+        this.title = title;
+        this.author = author;
     }
-    return -1;
+
+    public bool Equals(librarybook? other)
+    {
+        if (other is null) return false;
+        return catalogcode == other.catalogcode && title == other.title && author == other.author;
+    }
+
+    public override bool Equals(object? obj) => Equals(obj as librarybook);
+
+    public override int GetHashCode() => HashCode.Combine(catalogcode, title, author);
 }
 
-string[] codes = { "ex-101", "ex-102", "ex-103" };
-int idx = findindex(codes, "ex-102");
-Console.WriteLine($"index: {idx}");
+librarybook book1 = new librarybook("b1", "c#", "sam");
+librarybook book2 = new librarybook("b1", "c#", "sam");
+Console.WriteLine($"equal: {book1.Equals(book2)}");
 #endregion
 
 #endregion
