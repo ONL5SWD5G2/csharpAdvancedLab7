@@ -17,28 +17,46 @@
 //string str2 = "world";
 //exchange(ref str1, ref str2);
 //Console.WriteLine($"exchanged: {str1}, {str2}");
-//#endregion
+#endregion
 
 #region 2
-class pair<tfirst, tsecond>
+//class pair<tfirst, tsecond>
+//{
+//    public tfirst first { get; set; }
+//    public tsecond second { get; set; }
+
+//    public pair(tfirst first, tsecond second)
+//    {
+//        this.first = first;
+//        this.second = second;
+//    }
+
+//    public void print()
+//    {
+//        Console.WriteLine($"route: {first}, destination: {second}");
+//    }
+//}
+
+//pair<int, string> bus = new pair<int, string>(42, "downtown");
+//bus.print();
+#endregion
+
+#region 3
+static int findindex<t>(t[] array, t value)
 {
-    public tfirst first { get; set; }
-    public tsecond second { get; set; }
-
-    public pair(tfirst first, tsecond second)
+    for (int i = 0; i < array.Length; i++)
     {
-        this.first = first;
-        this.second = second;
+        if (array[i].Equals(value))
+        {
+            return i;
+        }
     }
-
-    public void print()
-    {
-        Console.WriteLine($"route: {first}, destination: {second}");
-    }
+    return -1;
 }
 
-pair<int, string> bus = new pair<int, string>(42, "downtown");
-bus.print();
+string[] codes = { "ex-101", "ex-102", "ex-103" };
+int idx = findindex(codes, "ex-102");
+Console.WriteLine($"index: {idx}");
 #endregion
 
 #endregion
