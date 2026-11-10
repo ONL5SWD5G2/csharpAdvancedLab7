@@ -126,9 +126,15 @@
 #region part 3
 
 #region 6
-Predicate<decimal> checktotal = total => total >= 150m;
-Console.WriteLine($"120 valid: {checktotal(120m)}");
-Console.WriteLine($"180 valid: {checktotal(180m)}");
+//Predicate<decimal> checktotal = total => total >= 150m;
+//Console.WriteLine($"120 valid: {checktotal(120m)}");
+//Console.WriteLine($"180 valid: {checktotal(180m)}");
+#endregion
+
+#region 7
+Func<string, int> getlength = label => label.Trim().Length;
+Console.WriteLine($"badge length: {getlength("  john  ")}");
+Console.WriteLine($"badge length: {getlength(" anna ")}");
 #endregion
 
 #endregion
