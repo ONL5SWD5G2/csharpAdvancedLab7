@@ -64,33 +64,61 @@
 #region part 2
 
 #region 4
-class librarybook : IEquatable<librarybook>
+//class librarybook : IEquatable<librarybook>
+//{
+//    public string catalogcode { get; set; }
+//    public string title { get; set; }
+//    public string author { get; set; }
+
+//    public librarybook(string catalogcode, string title, string author)
+//    {
+//        this.catalogcode = catalogcode;
+//        this.title = title;
+//        this.author = author;
+//    }
+
+//    public bool Equals(librarybook? other)
+//    {
+//        if (other is null) return false;
+//        return catalogcode == other.catalogcode && title == other.title && author == other.author;
+//    }
+
+//    public override bool Equals(object? obj) => Equals(obj as librarybook);
+
+//    public override int GetHashCode() => HashCode.Combine(catalogcode, title, author);
+//}
+
+//librarybook book1 = new librarybook("b1", "c#", "sam");
+//librarybook book2 = new librarybook("b1", "c#", "sam");
+//Console.WriteLine($"equal: {book1.Equals(book2)}");
+#endregion
+
+#region 5
+class bookcomparer : IEqualityComparer<librarybook>
 {
-    public string catalogcode { get; set; }
-    public string title { get; set; }
-    public string author { get; set; }
-
-    public librarybook(string catalogcode, string title, string author)
+    public bool Equals(librarybook? x, librarybook? y)
     {
-        this.catalogcode = catalogcode;
-        this.title = title;
-        this.author = author;
+        if (x is null && y is null) return true;
+        if (x is null || y is null) return false;
+        return x.catalogcode == y.catalogcode;
     }
 
-    public bool Equals(librarybook? other)
-    {
-        if (other is null) return false;
-        return catalogcode == other.catalogcode && title == other.title && author == other.author;
-    }
-
-    public override bool Equals(object? obj) => Equals(obj as librarybook);
-
-    public override int GetHashCode() => HashCode.Combine(catalogcode, title, author);
+    public int GetHashCode(librarybook obj) => obj.catalogcode.GetHashCode();
 }
 
-librarybook book1 = new librarybook("b1", "c#", "sam");
-librarybook book2 = new librarybook("b1", "c#", "sam");
-Console.WriteLine($"equal: {book1.Equals(book2)}");
+static int findbook<t>(t[] array, t value, IEqualityComparer<t> comparer)
+{
+    for (int i = 0; i < array.Length; i++)
+    {
+        if (comparer.Equals(array[i], value)) return i;
+    }
+    return -1;
+}
+
+librarybook[] catalog = { new librarybook("lib-1", "title a", "author a") };
+librarybook search = new librarybook("lib-1", "title b", "author b");
+int found = findbook(catalog, search, new bookcomparer());
+Console.WriteLine($"found index: {found}");
 #endregion
 
 #endregion
