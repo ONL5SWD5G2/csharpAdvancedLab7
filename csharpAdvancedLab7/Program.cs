@@ -138,9 +138,27 @@
 #endregion
 
 #region 8
-Action<string> announce = msg => Console.WriteLine($"announcement: {msg}");
-announce("train departing platform 1");
-announce("train arriving platform 2");
+//Action<string> announce = msg => Console.WriteLine($"announcement: {msg}");
+//announce("train departing platform 1");
+//announce("train arriving platform 2");
+#endregion
+
+#endregion
+
+#region part 4
+
+#region 9
+delegate bool textrule(string text);
+
+static bool containsdash(string text) => text.Contains("-");
+static bool startswitha(string text) => text.StartsWith("a");
+
+textrule rules = containsdash;
+rules += startswitha;
+
+string label = "a-123";
+Console.WriteLine($"contains dash: {containsdash(label)}");
+Console.WriteLine($"starts with a: {startswitha(label)}");
 #endregion
 
 #endregion
