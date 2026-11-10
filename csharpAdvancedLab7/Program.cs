@@ -94,31 +94,41 @@
 #endregion
 
 #region 5
-class bookcomparer : IEqualityComparer<librarybook>
-{
-    public bool Equals(librarybook? x, librarybook? y)
-    {
-        if (x is null && y is null) return true;
-        if (x is null || y is null) return false;
-        return x.catalogcode == y.catalogcode;
-    }
+//class bookcomparer : IEqualityComparer<librarybook>
+//{
+//    public bool Equals(librarybook? x, librarybook? y)
+//    {
+//        if (x is null && y is null) return true;
+//        if (x is null || y is null) return false;
+//        return x.catalogcode == y.catalogcode;
+//    }
 
-    public int GetHashCode(librarybook obj) => obj.catalogcode.GetHashCode();
-}
+//    public int GetHashCode(librarybook obj) => obj.catalogcode.GetHashCode();
+//}
 
-static int findbook<t>(t[] array, t value, IEqualityComparer<t> comparer)
-{
-    for (int i = 0; i < array.Length; i++)
-    {
-        if (comparer.Equals(array[i], value)) return i;
-    }
-    return -1;
-}
+//static int findbook<t>(t[] array, t value, IEqualityComparer<t> comparer)
+//{
+//    for (int i = 0; i < array.Length; i++)
+//    {
+//        if (comparer.Equals(array[i], value)) return i;
+//    }
+//    return -1;
+//}
 
-librarybook[] catalog = { new librarybook("lib-1", "title a", "author a") };
-librarybook search = new librarybook("lib-1", "title b", "author b");
-int found = findbook(catalog, search, new bookcomparer());
-Console.WriteLine($"found index: {found}");
+//librarybook[] catalog = { new librarybook("lib-1", "title a", "author a") };
+//librarybook search = new librarybook("lib-1", "title b", "author b");
+//int found = findbook(catalog, search, new bookcomparer());
+//Console.WriteLine($"found index: {found}");
+#endregion
+
+#endregion
+
+#region part 3
+
+#region 6
+Predicate<decimal> checktotal = total => total >= 150m;
+Console.WriteLine($"120 valid: {checktotal(120m)}");
+Console.WriteLine($"180 valid: {checktotal(180m)}");
 #endregion
 
 #endregion
